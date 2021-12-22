@@ -1,4 +1,6 @@
 
+import { flattenResult } from "../deps.ts";
+
 let lastUpdated = new Date(0);
 
 export async function queryDatabase(): Promise<any[]> {
@@ -14,12 +16,5 @@ export async function queryDatabase(): Promise<any[]> {
 			"Notion-Version": "2021-08-16"
 		}
 	});
-	let flat = (await res.json()).results;
-	flat = flat.map((r: any) => {return {...r.properties}});
-	flat = flat.map((r: any) => {
-		Object.keys(r).forEach((k: string) => {
-			r[k] = r[k][r[k].type]; });
-		return r;
-	});
-	return flat;
+	return flattenResult(await res.json());
 }
