@@ -1,16 +1,14 @@
 # redirect
-[![https://maintained.cc/SDBagel/Redirect/1](https://maintained.cc/SDBagel/Redirect/1)](https://ivy.direct/template-redirect)
-[![https://maintained.cc/SDBagel/Redirect/2](https://maintained.cc/SDBagel/Redirect/2)](https://ivy.direct)
 
 Analytics-optional, Notion-integrated, Dockerized redirect API.
 
 > ⚠️ This is self-hosted. You're going to need a little bit of server knowledge and a domain if you want this running on the web.
 
 ## Setup
-1. Duplicate the Notion page and [find the database ID](https://developers.notion.com/docs/working-with-databases)
+1. [Duplicate this Notion page](https://ivy.direct/template-redirect) and [find the database ID](https://developers.notion.com/docs/working-with-databases)
 2. [Create a new Notion integration](https://www.notion.so/my-integrations), copy the API token, and invite it to your duplicated Notion page
 3. Clone this repo and create a `.env` file with the ID and token, according to `.env.example`
-4. Optionally, if running an [`SDBagel/analytics`](https://github.com/SDBagel/analytics) instance, add the host of the analytics server (ex: `analytics.mydomain.com`)
+4. Optionally, if running an [`ivynya/analytics`](https://github.com/ivynya/analytics) instance, add the host of the analytics server (ex: `analytics.mydomain.com`)
 5. Run `docker build -t redirect .` and `docker run -p 8000:8000 -d redirect`
 6. Visit `http://localhost:8000/maintained` to test it works.
 
