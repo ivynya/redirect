@@ -25,7 +25,7 @@ app.use(async ctx => {
 	if (redir.CampaignID) {
 		// Make a request to the companion Analytics API
 		const apiBase = Deno.env.get("ANALYTICS_API_HOST");
-		await fetch(`https://${apiBase}/v1/campaign/${redir.CampaignID}`,
+		await fetch(`http://${apiBase}/v1/campaign/${redir.CampaignID}`,
 			{ method: "POST" });
 		console.log(`[LOG] Analytics request for ${redir.RedirectURL}:${redir.CampaignID}`);
 	}
