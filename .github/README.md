@@ -29,7 +29,7 @@ Other properties do not have an effect on the redirect. Additional properties ma
 2. [Create a new Notion integration](https://www.notion.so/my-integrations), copy the API token, and invite it to your duplicated Notion page
 3. Clone this repo and create a `.env` file with the ID and token, according to `.env.example`
 4. Optionally, if running an [`ivynya/analytics`](https://github.com/ivynya/analytics) instance, add the info of the analytics server (ex: `analytics.example.com` and `v2`)
-5. Run `docker run -p 3000:3000 -d ghcr.io/ivynya/redirect:latest`
+5. Run `docker run --env-file .env -p 3000:3000 -d ghcr.io/ivynya/redirect:latest`
 6. Visit `http://localhost:3000/github` to test it works.
 
 ## Updating Redirects
