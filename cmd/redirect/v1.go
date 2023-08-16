@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"os"
 
@@ -32,21 +33,27 @@ func createRouter(a *fiber.App) {
 
 		// if no page was found, return 404
 		if page == (notion.Page{}) {
+			log.Println("Page not found: " + c.Params("*"))
 			return c.Status(404).SendString("Page not found")
 		}
 
 		// if ANALYTICS_API env defined, make POST request
-		ANALYTICS_HOST := os.Getenv("ANALYTICS_API_HOST")
-		analyticsURL := ANALYTICS_HOST + "/campaign/" + page.CampaignID
+		ANALYTICS_HOST := os.Getenv("ANALYTICS_HOST")
+		ANALYTICS_VER := os.Getenv("ANALYTICS_VERSION")
+		analyticsBase := "https://" + ANALYTICS_HOST + "/" + ANALYTICS_VER
+		analyticsURL := analyticsBase + "/campaign/" + page.CampaignID
 		if ANALYTICS_HOST != "" {
+			log.Println("[A] " + analyticsURL)
 			res, err := http.Post(analyticsURL, "application/json", nil)
 			if err != nil {
+				log.Println("Analytics API error: " + err.Error())
 				return c.Status(500).SendString("Analytics API error")
 			}
 			defer res.Body.Close()
 		}
 
 		// if a page was found, redirect to it
+		log.Println("[>] " + page.ShortID + " -> " + page.RedirectURL[:25] + "...")
 		return c.Redirect(page.RedirectURL, 302)
 	})
 }
