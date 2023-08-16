@@ -20,11 +20,11 @@ Analytics-optional, Notion-integrated, Dockerized redirect API.
 
 ## Manage from Notion
 
-![Notion Template](./.docs/notion_template.png)
+![Notion Template](./.github/notion_template.png)
 
 The `Short` property describes which route to map to the `RedirectURL`. For example, `https://mydomain.com/:Short` will redirect to `:RedirectURL`. The `Short` property can be prefixed with a `/`, like `/maintained`, or without. It can contain multiple `/` characters, like `/maintained/onboarding`.
 
-The `CampaignID` integrates with an [`SDBagel/analytics`](https://github.com/SDBagel/analytics) instance. It corresponds to the `CampaignID` specified in an analytics campaign, and will track the number of times the link is accessed. It is OK to leave blank, but must be left blank if no analytics instance was configured in the environment.
+The `CampaignID` integrates with an [`ivynya/analytics`](https://github.com/ivynya/analytics) instance. It corresponds to the `CampaignID` specified in an analytics campaign, and will track the number of times the link is accessed. It is OK to leave blank, but must be left blank if no analytics instance was configured in the environment.
 
 Other properties do not have an effect on the redirect. Additional properties may be added to the Notion table (e.g. a multi-select for better grouping and sorting) and will not affect the redirect. However, modification of existing column names or types will break the redirect, so be careful.
 
