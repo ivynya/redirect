@@ -20,7 +20,7 @@ Analytics-optional, Notion-integrated, Dockerized redirect API.
 
 ## Manage from Notion
 
-![Notion Template](./.github/notion_template.png)
+![Notion Template](./v1_template.png)
 
 The `Short` property describes which route to map to the `RedirectURL`. For example, `https://mydomain.com/:Short` will redirect to `:RedirectURL`. The `Short` property can be prefixed with a `/`, like `/maintained`, or without. It can contain multiple `/` characters, like `/maintained/onboarding`.
 
