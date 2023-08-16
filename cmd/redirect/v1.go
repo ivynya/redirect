@@ -53,7 +53,7 @@ func createRouter(a *fiber.App) {
 		}
 
 		// if a page was found, redirect to it
-		log.Println("[>] " + page.ShortID + " -> " + page.RedirectURL[:25] + "...")
+		log.Println("[>] " + page.ShortID + " -> " + page.RedirectURL + "...")
 		return c.Redirect(page.RedirectURL, 302)
 	})
 }
