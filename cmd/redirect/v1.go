@@ -37,12 +37,12 @@ func createRouter(a *fiber.App) {
 			return c.Status(404).SendString("Page not found")
 		}
 
-		// if ANALYTICS_API env defined, make POST request
+		// if ANALYTICS_API and page.CampaignID defined, make POST request
 		ANALYTICS_HOST := os.Getenv("ANALYTICS_HOST")
 		ANALYTICS_VER := os.Getenv("ANALYTICS_VERSION")
 		analyticsBase := "https://" + ANALYTICS_HOST + "/" + ANALYTICS_VER
 		analyticsURL := analyticsBase + "/campaign/" + page.CampaignID
-		if ANALYTICS_HOST != "" {
+		if ANALYTICS_HOST != "" && ANALYTICS_VER != "" && page.CampaignID != "" {
 			log.Println("[A] " + analyticsURL)
 			res, err := http.Post(analyticsURL, "application/json", nil)
 			if err != nil {
