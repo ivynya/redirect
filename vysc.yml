@@ -1,0 +1,16 @@
+version: '3.7'
+
+vysc_project: redirect
+vysc_nginx:
+  redirect:
+    listen_host: ivy.direct
+    listen_path: /
+    listen_port: 80
+    proxy_port: 5001
+
+services:
+  redirect:
+    image: ghcr.io/ivynya/redirect:latest
+    restart: unless-stopped
+    ports:
+      - 5001:3000
