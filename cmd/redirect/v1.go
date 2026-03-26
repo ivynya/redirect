@@ -15,11 +15,10 @@ func createRouter(a *fiber.App) {
 		// find the page with the matching short ID
 		var page notion.Page
 
-		// if notion db is not set, try csv mode
+		// if notion not set, try csv mode, else notion, else fail
 		db_id := os.Getenv("NOTION_DB_ID")
 		csv_url := os.Getenv("CSV_URL")
 		if db_id == "" && csv_url != "" {
-			log.Println("NOTION_DB_ID not set, trying CSV_URL...")
 			pages, err := csv.GetPagesFromFile(csv_url)
 			if err != nil {
 				log.Println("Error fetching CSV: " + err.Error())
@@ -32,7 +31,6 @@ func createRouter(a *fiber.App) {
 				}
 			}
 		} else if db_id != "" {
-			log.Println("Fetching page from Notion...")
 			db, err := notion.FetchDatabase()
 			if err != nil {
 				return c.SendStatus(500)
