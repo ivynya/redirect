@@ -2,3 +2,4 @@
 .env
 
 notion/cache.json
+redirect.csv

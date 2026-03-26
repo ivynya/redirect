@@ -2,7 +2,7 @@
 
 ![https://img.shields.io/github/v/release/ivynya/redirect?label=version](https://img.shields.io/github/v/release/ivynya/redirect?label=version)
 
-Notion-integrated, Dockerized redirect API written in Go. Supports optional analytics integration with [`ivynya/analytics`](https://github.com/ivynya/analytics).
+Notion-integrated, Dockerized redirect API written in Go. Supports optional analytics integration with [`ivynya/analytics`](https://github.com/ivynya/analytics). Also supports a CSV backing datastore.
 
 ## Manage from Notion
 
@@ -39,6 +39,12 @@ Other properties do not have an effect on the redirect. Additional properties ma
 ## Invalid Redirects
 
 Invalid redirects will return a 404 not found error.
+
+## CSV Format
+
+In case you migrate off of Notion, you can export the Notion database to a CSV and re-use it as a backing datastore - it will likely be harder to manually update and manage, but serves as a stopgap if you have many existing entries you'd like to preserve and keep using in the short term. The CSV *must* have CampaignID in column index 1, RedirectURL in column index 3, and the short URL stub in column index 4 - formatted the same as if you were using the Notion template.
+
+Remove the `NOTION*` environment variables and add the `CSV_URL=/path/to/file.csv` variable to use CSV instead.
 
 ## License
 
